@@ -8,7 +8,7 @@ export default function spinClose(target, params = {}, options = {}) {
     ease = 'power2.in'
   } = params;
 
-  gsap.to(target, {
+  return gsap.to(target, {
     rotation,
     scale: to,
     alpha: 0,

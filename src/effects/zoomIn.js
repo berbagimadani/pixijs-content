@@ -10,7 +10,7 @@ export default function zoomIn(target, params = {}, options = {}) {
     ease = 'power2.out'
   } = params;
 
-  gsap.fromTo(
+  return gsap.fromTo(
     target,
     { scale: from, alpha: alphaFrom },
     { scale: to, alpha: alphaTo, duration, ease, ...options }
