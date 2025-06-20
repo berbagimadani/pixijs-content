@@ -1,16 +1,21 @@
 {
-  "name": "pixijs-data-driven",
-  "version": "1.0.0",
-  "description": "Data-driven footage maker using PixiJS and GSAP",
+  "name": "my-pixi-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
-  },
-  "dependencies": {
-    "pixi.js": "^7.2.4",
-    "gsap": "^3.12.2"
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^5.2.0"
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "gsap": "^3.13.0",
+    "@pixi/particles": "^6.0.3", 
+    "pixi.js": "^8.9.2",
+    "puppeteer": "^24.8.1",
+    "three": "^0.176.0"
   }
 }
