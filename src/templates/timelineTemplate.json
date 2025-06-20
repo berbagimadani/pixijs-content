@@ -25,7 +25,7 @@
       ]
     },
     {
-      "duration": 10,
+      "duration": 5,
       "transitionIn": { "duration": 0.5 },
       "transitionOut": { "duration": 0.5 },
       "layers": [
@@ -33,6 +33,21 @@
           "type": "text",
           "text": "Scene 2!",
           "props": { "x": 400, "y": 200, "alpha": 0, "scale": 2 },
+          "animations": [
+            { "at": 0, "to": { "alpha": 1, "scale": 1 }, "duration": 1, "easing": "bounce.out" }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 2,
+      "transitionIn": { "duration": 0.5 },
+      "transitionOut": { "duration": 0.5 },
+      "layers": [
+        {
+          "type": "text",
+          "text": "Scene 3!",
+          "props": { "x": 500, "y": 200, "alpha": 0, "scale": 2 },
           "animations": [
             { "at": 0, "to": { "alpha": 1, "scale": 1 }, "duration": 1, "easing": "bounce.out" }
           ]
