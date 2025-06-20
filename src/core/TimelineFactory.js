@@ -18,9 +18,10 @@ export default class TimelineFactory {
       this.sceneManager.clear();
     }
 
-    for (const { data: sceneData, layers } of scenes) {
+    scenes.forEach(({ data: sceneData, layers }, idx) => {
       // Add layers to stage before animation
       master.add(() => {
+        console.log(`Scene ${idx + 1} start`);
         this.sceneManager.layers = layers;
         layers.forEach(layer => this.sceneManager.app.stage.addChild(layer));
       });
@@ -33,8 +34,13 @@ export default class TimelineFactory {
       master.add(() => {
         layers.forEach(layer => this.sceneManager.app.stage.removeChild(layer));
         this.sceneManager.layers = [];
+        console.log(`Scene ${idx + 1} end`);
       });
-    }
+    });
+
+    master.eventCallback('onComplete', () => {
+      console.log('Timeline finished');
+    });
 
     return master;
   }
