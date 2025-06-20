@@ -72,8 +72,12 @@ export default class TimelineFactory {
       (layerData.animations || []).forEach(anim => {
         if (anim.type) {
           const effect = EffectRegistry.effects[anim.type];
-          if (effect) {
-            const tween = effect(layer, anim.params || {}, anim.options || {});
+          if (effect) { 
+            const tween = effect(
+              layer,
+              anim.params || {},
+              { paused: true, immediateRender: false, ...(anim.options || {}) }
+            ); 
             if (tween) tl.add(tween, anim.at || 0);
           }
         } else {
