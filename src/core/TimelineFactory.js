@@ -76,8 +76,8 @@ export default class TimelineFactory {
             const tween = effect(
               layer,
               anim.params || {},
-              { paused: true, immediateRender: false, ...(anim.options || {}) }
-            ); 
+              { paused: true, ...(anim.options || {}) }
+            );
             if (tween) tl.add(tween, anim.at || 0);
           }
         } else {
