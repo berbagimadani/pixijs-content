@@ -8,12 +8,30 @@ export default class TimelineFactory {
 
   async create(data) {
     const master = gsap.timeline();
+
+    // preload all scene layers but keep them off stage
+    const scenes = [];
     for (const scene of data.scenes) {
       await this.sceneManager.loadScene(scene);
-      const tl = this._buildSceneTimeline(scene);
-      master.add(tl);
-      master.add(() => this.sceneManager.clear());
+      scenes.push({ data: scene, layers: [...this.sceneManager.layers] });
+      this.sceneManager.clear();
     }
+
+    for (const { data: sceneData, layers } of scenes) {
+      master.add(() => {
+        this.sceneManager.layers = layers;
+        layers.forEach(layer => this.sceneManager.app.stage.addChild(layer));
+      });
+
+      const tl = this._buildSceneTimeline(sceneData);
+      master.add(tl);
+
+      master.add(() => {
+        layers.forEach(layer => this.sceneManager.app.stage.removeChild(layer));
+        this.sceneManager.layers = [];
+      });
+    }
+
     return master;
   }
 
