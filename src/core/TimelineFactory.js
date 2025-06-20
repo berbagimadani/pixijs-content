@@ -61,7 +61,7 @@ export default class TimelineFactory {
       }, sceneData.duration - sceneData.transitionOut.duration);
     }
 
-    tl.to({}, { duration: sceneData.duration });
+    tl.add(sceneData.duration);
     return tl;
   }
 }
