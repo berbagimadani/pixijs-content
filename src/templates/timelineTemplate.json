@@ -1,7 +1,7 @@
 {
   "scenes": [
     {
-      "duration": 4,
+      "duration": 2,
       "transitionIn": { "duration": 0.5 },
       "transitionOut": { "duration": 0.5 },
       "layers": [
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "duration": 5,
+      "duration": 10,
       "transitionIn": { "duration": 0.5 },
       "transitionOut": { "duration": 0.5 },
       "layers": [
