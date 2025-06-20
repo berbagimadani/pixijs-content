@@ -1,7 +1,7 @@
 {
   "scenes": [
     {
-      "duration": 5,
+      "duration": 4,
       "transitionIn": { "duration": 0.5 },
       "transitionOut": { "duration": 0.5 },
       "layers": [
@@ -18,19 +18,19 @@
             {
               "at": 0.2,
               "to": { "alpha": 1, "scale": 1, "rotation": 15 },
-              "duration": 0.3,
+              "duration": 0.5,
               "easing": "power1.out"
             },
             {
-              "at": 0.3,
+              "at": 0.5,
               "to": { "rotation": -15 },
-              "duration": 1,
+              "duration": 2.5,
               "easing": "power1.inOut"
             },
             {
               "at": 0.5,
               "to": { "alpha": 0 },
-              "duration": 1,
+              "duration": 3,
               "easing": "power1.in"
             }
           ]
@@ -114,29 +114,10 @@
           "props": {
             "x": 300,
             "y": 400,
-            "anchor": { "x": 0.5, "y": 0.5 },
-            "alpha": 0,
-            "scale": { "x": 0, "y": 0 }
+            "anchor": { "x": 0.5, "y": 0.5 }
           },
           "animations": [
-            {
-              "at": 0,
-              "to": { "alpha": 1, "scale": 1 },
-              "duration": 1,
-              "easing": "power2.out"
-            },
-            {
-              "at": 1,
-              "to": { "rotation": 360 },
-              "duration": 2,
-              "easing": "power1.inOut"
-            },
-            {
-              "at": 4.5,
-              "to": { "alpha": 0, "scale": 0 },
-              "duration": 0.5,
-              "easing": "power2.in"
-            }
+            { "type": "zoomIn", "params": { "from": 0, "to": 1, "duration": 1 } }
           ]
         }
       ]
