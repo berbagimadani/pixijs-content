@@ -77,7 +77,13 @@ export default class TimelineFactory {
     }
 
     // Hold for scene duration
-    tl.to({}, { duration: sceneData.duration });
+    //tl.to({}, { duration: sceneData.duration });
+    
+    // Hold so the scene lasts at least the specified duration
+    const holdDuration = Math.max(sceneData.duration - tl.duration(), 0);
+    if (holdDuration > 0) {
+      tl.to({}, { duration: holdDuration });
+    }
 
     return tl;
   }
