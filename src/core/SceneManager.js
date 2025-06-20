@@ -13,12 +13,19 @@ export default class SceneManager {
     this.layers = [];
   }
 
-  async loadScene(data) {
+  async loadScene(data, options = {}) {
+    const { applyAnimations = true } = options;
+
     this.clear();
     for (const layerData of data.layers) {
       const layer = await LayerFactory.create(layerData, this.app);
       this.app.stage.addChild(layer);
-      if (Array.isArray(layerData.animations) && layerData.animations.length && layerData.animations[0].type) {
+      if (
+        applyAnimations &&
+        Array.isArray(layerData.animations) &&
+        layerData.animations.length &&
+        layerData.animations[0].type
+      ) {
         parseAnimations(layer, layerData.animations, EffectRegistry.effects);
       }
       this.layers.push(layer);

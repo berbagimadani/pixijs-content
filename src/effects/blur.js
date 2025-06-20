@@ -6,5 +6,11 @@ export default function blur(target, params = {}, options = {}) {
   if (!target.filters) target.filters = [];
   const filter = new BlurFilter(0);
   target.filters.push(filter);
-  gsap.to(filter, { blur: strength, duration, yoyo: true, repeat: 1, ...options });
+  return gsap.to(filter, {
+    blur: strength,
+    duration,
+    yoyo: true,
+    repeat: 1,
+    ...options
+  });
 }

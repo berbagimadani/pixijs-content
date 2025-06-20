@@ -1,5 +1,6 @@
 import { gsap } from 'gsap';
 import { parseProps } from '../utils/index.js';
+import EffectRegistry from './EffectRegistry.js';
 
 export default class TimelineFactory {
   constructor(sceneManager) {
@@ -12,7 +13,7 @@ export default class TimelineFactory {
     // preload all scene layers but keep them off stage
     const scenes = [];
     for (const scene of data.scenes) {
-      await this.sceneManager.loadScene(scene);
+      await this.sceneManager.loadScene(scene, { applyAnimations: false });
       // Clone the layers for each scene
       scenes.push({ data: scene, layers: [...this.sceneManager.layers] });
       this.sceneManager.clear();
@@ -69,7 +70,23 @@ export default class TimelineFactory {
       if (!layer) return; // Guard if index mismatch
       parseProps(layer, layerData.props);
       (layerData.animations || []).forEach(anim => {
-        tl.to(layer, { ...anim.to, duration: anim.duration, ease: anim.easing }, anim.at);
+        if (anim.type) {
+          const effect = EffectRegistry.effects[anim.type];
+          if (effect) {
+            const tween = effect(
+              layer,
+              anim.params || {},
+              { paused: true, immediateRender: false, ...(anim.options || {}) }
+            );
+            if (tween) tl.add(tween, anim.at || 0);
+          }
+        } else {
+          tl.to(
+            layer,
+            { ...anim.to, duration: anim.duration, ease: anim.easing },
+            anim.at
+          );
+        }
       });
     });
 
