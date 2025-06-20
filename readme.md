@@ -24,3 +24,23 @@ npm run dev
 ```
 
 This serves the project using Vite.
+
+## Loading Timelines
+
+`AppManager` can build a GSAP timeline from a JSON file. The example template at `src/templates/timelineTemplate.json` describes two scenes. Load it using `loadTimeline` and play the resulting timeline:
+
+```javascript
+import AppManager from './core/AppManager.js';
+import timeline from './templates/timelineTemplate.json';
+import registerEffects from './effects/register.js';
+
+registerEffects();
+
+const appManager = await AppManager.create();
+document.body.appendChild(appManager.view);
+
+const tl = await appManager.loadTimeline(timeline);
+tl.play();
+```
+
+This reads the template, builds each scene and plays them back to back.
