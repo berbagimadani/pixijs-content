@@ -10,22 +10,28 @@
           "src": "../public/water.png",
           "props": {
             "x": 300,
-            "y": 100,
+            "y": 300,
             "alpha": 0,
             "scale": { "x": 0, "y": 0 }
           },
           "animations": [
             {
-              "at": 0,
-              "to": { "alpha": 1, "scale": 1, "rotation": 360 },
-              "duration": 2,
-              "easing": "power2.out"
+              "at": 0.2,
+              "to": { "alpha": 1, "scale": 1, "rotation": 15 },
+              "duration": 0.3,
+              "easing": "power1.out"
             },
             {
-              "at": 1,
-              "to": { "alpha": 0, "scale": 0 },
-              "duration": 0.5,
-              "easing": "power2.in"
+              "at": 0.3,
+              "to": { "rotation": -15 },
+              "duration": 1,
+              "easing": "power1.inOut"
+            },
+            {
+              "at": 0.5,
+              "to": { "alpha": 0 },
+              "duration": 1,
+              "easing": "power1.in"
             }
           ]
         },
@@ -40,19 +46,19 @@
           },
           "animations": [
             {
-              "at": 0.5,
+              "at": 0.7,
               "to": { "alpha": 1, "scale": 1, "rotation": -15 },
-              "duration": 0.5,
+              "duration": 0,
               "easing": "power1.out"
             },
             {
-              "at": 1.2,
+              "at": 1,
               "to": { "rotation": 15 },
-              "duration": 0.3,
+              "duration": 1,
               "easing": "power1.inOut"
             },
             {
-              "at": 1.6,
+              "at": 2,
               "to": { "alpha": 0 },
               "duration": 0.4,
               "easing": "power1.in"
@@ -84,13 +90,13 @@
             },
             {
               "at": 2,
-              "to": { "x": 500 },
+              "to": { "x": 600 },
               "duration": 1,
               "easing": "power1.inOut"
             },
             {
               "at": 3,
-              "to": { "x": 400 },
+              "to": { "x":300 },
               "duration": 1,
               "easing": "power1.inOut"
             },
