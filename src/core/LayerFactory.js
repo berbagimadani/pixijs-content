@@ -6,7 +6,7 @@ export default class LayerFactory {
     let layer;
     switch (data.type) {
       case 'text':
-        layer = new PIXI.Text(data.text || '', data.style || {});
+        layer = new PIXI.Text({ text: data.text || '', style: data.style || {} });
         break;
       case 'sprite':
         await PIXI.Assets.load(data.texture);
