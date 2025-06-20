@@ -1,0 +1,16 @@
+{
+  "name": "pixijs-data-driven",
+  "version": "1.0.0",
+  "description": "Data-driven footage maker using PixiJS and GSAP",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "pixi.js": "^7.2.4",
+    "gsap": "^3.12.2"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0"
+  }
+}
