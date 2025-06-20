@@ -1,4 +1,6 @@
 export default function parseProps(target, props = {}) {
+  if (!target) return;
+
   Object.entries(props).forEach(([key, value]) => {
     if (typeof target[key] === 'object' && target[key] !== null) {
       Object.assign(target[key], value);
