@@ -14,7 +14,7 @@ export default class AppManager {
     await app.init({
       width: 1920,
       height: 1080,
-      backgroundColor: 0x000000,
+      backgroundColor: "#ccc",
       antialias: true,
       preserveDrawingBuffer: true,
       ...options
