@@ -1,5 +1,5 @@
 import AppManager from './core/AppManager.js';
-import template from './templates/sampleTemplate.json';
+import timeline from './templates/timelineTemplate.json';
 import registerEffects from './effects/register.js';
 
 registerEffects();
@@ -8,4 +8,5 @@ const appManager = await AppManager.create();
 
 document.body.appendChild(appManager.view);
 
-await appManager.loadTemplate(template);
+const tl = await appManager.loadTimeline(timeline);
+tl.play();

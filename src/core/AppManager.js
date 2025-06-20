@@ -1,10 +1,12 @@
 import { Application } from 'pixi.js';
 import SceneManager from './SceneManager.js';
+import TimelineFactory from './TimelineFactory.js';
 
 export default class AppManager {
-  constructor(app, sceneManager) {
+  constructor(app, sceneManager, timelineFactory) {
     this.app = app;
     this.sceneManager = sceneManager;
+    this.timelineFactory = timelineFactory;
   }
 
   static async create(options = {}) {
@@ -18,9 +20,10 @@ export default class AppManager {
       ...options
     });
 
-    const sceneManager = new SceneManager(app); 
-    
-    return new AppManager(app, sceneManager);
+    const sceneManager = new SceneManager(app);
+    const timelineFactory = new TimelineFactory(sceneManager);
+
+    return new AppManager(app, sceneManager, timelineFactory);
   }
   
   get view() {
@@ -29,5 +32,9 @@ export default class AppManager {
 
   async loadTemplate(template) {
     await this.sceneManager.loadScene(template);
+  }
+
+  async loadTimeline(timelineData) {
+    return this.timelineFactory.create(timelineData);
   }
 }

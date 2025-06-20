@@ -18,7 +18,9 @@ export default class SceneManager {
     for (const layerData of data.layers) {
       const layer = await LayerFactory.create(layerData, this.app);
       this.app.stage.addChild(layer);
-      parseAnimations(layer, layerData.animations, EffectRegistry.effects);
+      if (Array.isArray(layerData.animations) && layerData.animations.length && layerData.animations[0].type) {
+        parseAnimations(layer, layerData.animations, EffectRegistry.effects);
+      }
       this.layers.push(layer);
     }
   }

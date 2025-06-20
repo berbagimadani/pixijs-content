@@ -12,6 +12,10 @@ export default class LayerFactory {
         await PIXI.Assets.load(data.texture);
         layer = PIXI.Sprite.from(data.texture);
         break;
+      case 'image':
+        await PIXI.Assets.load(data.src);
+        layer = PIXI.Sprite.from(data.src);
+        break;
       default:
         layer = new PIXI.Container();
     }

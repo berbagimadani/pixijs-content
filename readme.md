@@ -10,6 +10,7 @@ src/
   effects/         # reusable animation effects
   templates/       # JSON templates describing scenes
   utils/           # helper functions for property and animation parsing
+  TimelineFactory  # builds GSAP timelines from template scenes
   main.js          # entry file used by Vite
 ```
 
