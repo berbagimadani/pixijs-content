@@ -27,7 +27,7 @@ export default class AppManager {
     return this.app.canvas;
   }
 
-  loadTemplate(template) {
-    this.sceneManager.loadScene(template);
+  async loadTemplate(template) {
+    await this.sceneManager.loadScene(template);
   }
 }

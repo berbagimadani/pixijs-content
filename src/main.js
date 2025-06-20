@@ -8,4 +8,4 @@ const appManager = await AppManager.create();
 
 document.body.appendChild(appManager.view);
 
-appManager.loadTemplate(template);
+await appManager.loadTemplate(template);

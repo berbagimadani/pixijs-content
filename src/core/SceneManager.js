@@ -13,13 +13,13 @@ export default class SceneManager {
     this.layers = [];
   }
 
-  loadScene(data) {
+  async loadScene(data) {
     this.clear();
-    data.layers.forEach(layerData => {
-      const layer = LayerFactory.create(layerData, this.app);
+    for (const layerData of data.layers) {
+      const layer = await LayerFactory.create(layerData, this.app);
       this.app.stage.addChild(layer);
       parseAnimations(layer, layerData.animations, EffectRegistry.effects);
       this.layers.push(layer);
-    });
+    }
   }
 }
