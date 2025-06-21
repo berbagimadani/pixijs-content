@@ -11,4 +11,4 @@ document.body.appendChild(appManager.view);
 
 const tl = await appManager.loadTimeline(timeline);
 //const tl = await appManager.loadTemplate(sample);
-tl.play();
+//tl.play();
