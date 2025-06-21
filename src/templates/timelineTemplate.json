@@ -8,7 +8,7 @@
         {
           "type": "image",
           "src": "./public/bg.jpg",
-          "props": { "x": "0%", "y": "0%", "alpha": 0, "scale": { "x": 1.2, "y": 1.2 } },
+          "props": { "x": 0, "y": 0, "alpha": 0, "scale": { "x": 1.2, "y": 1.2 } },
           "animations": [
             { "type": "fadeInOut", "params": { "durationIn": 1, "durationOut": 1 }, "at": 0 },
             { "type": "zoomIn", "params": { "from": 1.2, "to": 1, "duration": 2, "ease": "power2.out" }, "at": 0.5 }
@@ -17,7 +17,7 @@
         {
           "type": "text",
           "text": "Creative Showcase",
-          "props": { "x": "50%", "y": "9%", "alpha": 0, "scale": { "x": 0.8, "y": 0.8 } },
+          "props": { "x": 400, "y": 100, "alpha": 0, "scale": { "x": 0.8, "y": 0.8 } },
           "animations": [
             { "type": "zoomIn", "params": { "from": 0, "to": 1.2, "duration": 1.5 }, "at": 0.8 },
             { "type": "pulse", "params": { "from": 1, "to": 1.1, "duration": 1, "repeat": 3 }, "at": 2 }
@@ -26,7 +26,7 @@
         {
           "type": "sprite",
           "texture": "./public/1.jpeg",
-          "props": { "x": "50%", "y": "28%", "anchor": { "x": 0.5, "y": 0.5 }, "alpha": 0 },
+          "props": { "x": 400, "y": 300, "anchor": { "x": 0.5, "y": 0.5 }, "alpha": 0 },
           "animations": [
             { "type": "bounce", "params": { "from": 0.5, "to": 1.2, "duration": 1.5 }, "at": 1.5 },
             { "type": "glitch", "params": { "amount": 30, "duration": 2, "times": 15 }, "at": 3 }
@@ -35,7 +35,7 @@
         {
           "type": "text",
           "text": "Coming Soonxx...",
-          "props": { "x": "50%", "y": "42%", "alpha": 1 },
+          "props": { "x": 400, "y": 450, "alpha": 1 },
           "animations": [
             { "type": "typewriter", "params": { "duration": 2 }, "at": 2.5 },
             { "type": "flicker", "params": { "duration": 2, "repeat": 10 }, "at": 4 }
@@ -51,7 +51,7 @@
         {
           "type": "sprite",
           "texture": "./public/2.jpeg",
-          "props": { "x": "31%", "y": "23%", "anchor": { "x": 0.5, "y": 0.5 }, "alpha": 0 },
+          "props": { "x": 300, "y": 250, "anchor": { "x": 0.5, "y": 0.5 }, "alpha": 0 },
           "animations": [
             { "type": "spinClose", "params": { "rotation": 6.283, "to": 0, "duration": 1.5 }, "at": 0.5 },
             { "type": "swing", "params": { "amplitude": 15, "duration": 2, "repeat": 2 }, "at": 2 }
@@ -60,16 +60,16 @@
         {
           "type": "text",
           "text": "New Product Launch",
-          "props": { "x": "31%", "y": "37%", "alpha": 0 },
+          "props": { "x": 300, "y": 400, "alpha": 0 },
           "animations": [
-            { "to": { "alpha": 1, "x": "52%" }, "duration": 1, "easing": "power2.out", "at": 1 },
+            { "to": { "alpha": 1, "x": 500 }, "duration": 1, "easing": "power2.out", "at": 1 },
             { "type": "shake", "params": { "duration": 0.1, "repeat": 5 }, "at": 3 }
           ]
         },
         {
           "type": "sprite",
           "texture": "./public/3.jpeg",
-          "props": { "x": "63%", "y": "14%", "alpha": 0, "scale": 0.5 },
+          "props": { "x": 600, "y": 150, "alpha": 0, "scale": 0.5 },
           "animations": [
             { "type": "blur", "params": { "from": 10, "to": 0, "duration": 1.5 }, "at": 2 },
             { "type": "pulse", "params": { "from": 1, "to": 1.3, "duration": 1, "repeat": 4 }, "at": 4 }
@@ -85,7 +85,7 @@
         {
           "type": "text",
           "text": "Thank You!",
-          "props": { "x": "50%", "y": "19%", "alpha": 0, "scale": 1.5 },
+          "props": { "x": 400, "y": 200, "alpha": 0, "scale": 1.5 },
           "animations": [
             { "type": "zoomIn", "params": { "from": 0, "to": 1, "duration": 1 }, "at": 0.5 },
             { "type": "glitch", "params": { "amount": 20, "duration": 2, "times": 8 }, "at": 2 }
@@ -94,7 +94,7 @@
         {
           "type": "sprite",
           "texture": "./public/water.png",
-          "props": { "x": "50%", "y": "28%", "alpha": 0 },
+          "props": { "x": 400, "y": 300, "alpha": 0 },
           "animations": [
             { "type": "typewriter", "params": { "duration": 2 }, "at": 1.5 },
             { "type": "flicker", "params": { "duration": 1.5, "repeat": 5 }, "at": 3 }
@@ -103,7 +103,7 @@
         {
           "type": "text",
           "text": "Visit us at example.com",
-          "props": { "x": "50%", "y": "37%", "alpha": 0 },
+          "props": { "x": 400, "y": 400, "alpha": 0 },
           "animations": [
             { "type": "bounce", "params": { "from": 0.7, "to": 1.1, "duration": 1 }, "at": 2.5 },
             { "type": "swing", "params": { "amplitude": 10, "duration": 1.5, "repeat": 1 }, "at": 3.5 }
