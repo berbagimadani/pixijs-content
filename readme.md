@@ -44,3 +44,30 @@ tl.play();
 ```
 
 This reads the template, builds each scene and plays them back to back.
+
+## Animations
+
+Each layer can provide an `animations` array describing how it should change
+over time. Every object in this array is executed at the time given by its
+`at` property. If `at` is omitted the animations run sequentially. The `at`
+field may also contain a GSAP position string such as `"+=1"` for precise
+scheduling.
+
+Example of two animations applied to one layer:
+
+```json
+{
+  "layers": [
+    {
+      "type": "sprite",
+      "texture": "bunny.png",
+      "animations": [
+        { "type": "zoomIn", "params": { "from": 1, "to": 2, "duration": 0.5 } },
+        { "at": "+=0.5", "to": { "rotation": 90 }, "duration": 0.5 }
+      ]
+    }
+  ]
+}
+```
+
+The layer first zooms in and then rotates.
