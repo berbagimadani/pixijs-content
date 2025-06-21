@@ -12,7 +12,7 @@ export default class TimelineFactory {
   }
 
   async create(data) {
-    const master = gsap.timeline();
+    const master = gsap.timeline({ paused: true });
 
     // preload all scene layers but keep them off stage
     const scenes = [];
@@ -47,6 +47,9 @@ export default class TimelineFactory {
       console.log('Timeline finished');
     });
 
+    //console.log('Returning master:', master);
+ 
+    return [master, scenes];
     return master;
   }
 

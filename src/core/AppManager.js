@@ -50,7 +50,15 @@ export default class AppManager {
   }
 
   async loadTimeline(timelineData) {
-    return this.timelineFactory.create(timelineData);
+    // const tes = this.timelineFactory.create(timelineData);
+    
+    // setTimeout(() => {
+    //   console.log('tl.time setelah play:', tes);
+    //   tes.play();
+    // }, 1000)
+
+    // return tes;
+    return await this.timelineFactory.create(timelineData);
   }
 
   enableResponsive() {
