@@ -4,8 +4,8 @@ import sample from './templates/sampleTemplate.json';
 import registerEffects from './effects/register.js';
 
 registerEffects();
-
-const appManager = await AppManager.create({ responsive: true });
+ 
+const appManager = await AppManager.create({ responsive: true }); 
 
 document.body.appendChild(appManager.view);
 
