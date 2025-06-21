@@ -49,7 +49,6 @@ export default class TimelineFactory {
   _buildSceneTimeline(sceneData, layers) {
     const tl = gsap.timeline();
 
-    // Guard: pastikan layers valid dan tidak kosong
     if (!layers || !layers.length) {
       console.warn('No layers to animate for scene:', sceneData);
       return tl;
@@ -61,23 +60,28 @@ export default class TimelineFactory {
         alpha: 0,
         duration: sceneData.transitionIn.duration,
         stagger: 0
-      });
+      }, 0);
     }
 
-    // Layer Animations
-    sceneData.layers.forEach((layerData, index) => {
+    // Cari waktu selesai animasi terlama (agar transitionOut bisa tepat di akhir)
+    let maxAnimTime = 0;
+
+    (sceneData.layers || []).forEach((layerData, index) => {
       const layer = layers[index];
-      if (!layer) return; // Guard if index mismatch
+      if (!layer) return;
       parseProps(layer, layerData.props);
 
-      // keep track of the running time for this layer so that
-      // animations without an explicit `at` value chain sequentially
-      let currentTime = 0;
-
       (layerData.animations || []).forEach(anim => {
-        // determine where this animation should start: use the
-        // provided `at` if present, otherwise fall back to currentTime
-        const position = typeof anim.at === 'number' ? anim.at : currentTime;
+        // Penentuan waktu mulai animasi: gunakan anim.at jika ada, jika tidak default 0 (paralel)
+        const at = typeof anim.at === 'number' ? anim.at : 0;
+
+        // Ambil durasi dari parameter (params), atau duration langsung (untuk tween manual)
+        let effectDuration = anim.duration || 0;
+        if (anim.params && anim.params.duration) effectDuration = anim.params.duration;
+        if (anim.options && anim.options.delay) effectDuration += anim.options.delay;
+
+        const animEnd = at + effectDuration;
+        if (animEnd > maxAnimTime) maxAnimTime = animEnd;
 
         if (anim.type) {
           const effect = EffectRegistry.effects[anim.type];
@@ -85,46 +89,37 @@ export default class TimelineFactory {
             const tween = effect(
               layer,
               anim.params || {},
-              { paused: true, ...(anim.options || {}) }
+              { ...(anim.options || {}) }
             );
-            if (tween) {
-              // add the effect tween at the resolved position
-              tl.add(tween, position);
-              // advance the current time for sequencing
-              currentTime = position + tween.duration();
-            }
+            if (tween) tl.add(tween, at);
           }
         } else {
           tl.to(
             layer,
-            { ...anim.to, duration: anim.duration, ease: anim.easing },
-            position
+            { ...anim.to, duration: effectDuration, ease: anim.easing },
+            at
           );
-          // update the running time based on this animation's duration
-          currentTime = position + (anim.duration || 0);
         }
       });
     });
 
-    // Transition Out
+    // Transition Out (letakkan di akhir semua animasi)
     if (sceneData.transitionOut && sceneData.transitionOut.duration) {
-      tl.to(layers, {
-        alpha: 0,
-        duration: sceneData.transitionOut.duration,
-        stagger: 0
-      }, sceneData.duration - sceneData.transitionOut.duration);
+      tl.to(
+        layers,
+        {
+          alpha: 0,
+          duration: sceneData.transitionOut.duration,
+          stagger: 0
+        },
+        maxAnimTime
+      );
+      maxAnimTime += sceneData.transitionOut.duration;
     }
 
-    // Hold for scene duration
-    //tl.to({}, { duration: sceneData.duration });
-    
-    // Hold so the scene lasts at least the specified duration
-    const holdDuration = Math.max(sceneData.duration - tl.duration(), 0);
-    console.log(holdDuration, sceneData.duration, tl.duration());
-    if (holdDuration > 0) {
-      tl.to({}, { duration: holdDuration });
-    }
+    console.log(`Scene will end at ${maxAnimTime} seconds`);
 
+    // TIDAK PERLU holdDuration dummy!
     return tl;
-  }
+  } 
 }

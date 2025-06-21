@@ -1,9 +1,7 @@
 {
   "scenes": [
     {
-      "duration": 4,
-      "transitionIn": { "duration": 0.5 },
-      "transitionOut": { "duration": 0.5 },
+      "duration": 4, 
       "layers": [
         {
           "type": "image",
@@ -68,9 +66,7 @@
       ]
     },
     {
-      "duration": 5,
-      "transitionIn": { "duration": 0.5 },
-      "transitionOut": { "duration": 0.5 },
+      "duration": 7, 
       "layers": [
         {
           "type": "text",
@@ -111,15 +107,11 @@
         {
           "type": "sprite",
           "texture": "https://pixijs.io/examples/examples/assets/bunny.png",
-          "props": {
-            "x": 300,
-            "y": 400,
-            "anchor": { "x": 0.5, "y": 0.5 }
-          },
+          "props": { "x": 400, "y": 300, "anchor": { "x": 0.5, "y": 0.5 } },
           "animations": [
-            { "type": "zoomIn", "params": { "from": 1, "to": 3, "duration": 0.5 } },
-            { "type": "shake", "params": { "duration": 0.1, "repeat": 10 } },
-            { "type": "spinClose", "params": { "rotation": 360, "duration": 0.5 }, "options": { "delay": 2 } }
+            { "at": 0, "type": "zoomIn", "params": { "from": 0, "to": 4, "duration": 2 } },
+            { "at": 0, "type": "shake", "params": { "duration": 0.2, "repeat": 30 } },
+            { "at": 0, "type": "spinClose", "params": { "rotation": 360, "duration": 0.5 }, "options": { "delay": 3 } }
           ]
         }
       ]
@@ -133,24 +125,13 @@
           "type": "text",
           "text": "Scene 3!",
           "props": {
-            "x": 500,
+            "x": 200,
             "y": 200,
             "alpha": 0,
             "scale": { "x": 0, "y": 0 }
           },
           "animations": [
-            {
-              "at": 0,
-              "to": { "alpha": 1, "scale": 1, "rotation": -360 },
-              "duration": 0.8,
-              "easing": "power2.out"
-            },
-            {
-              "at": 1.2,
-              "to": { "alpha": 0 },
-              "duration": 0.5,
-              "easing": "power2.in"
-            }
+            { "type": "zoomIn", "params": { "from": 0, "to": 4, "duration": 1} }
           ]
         },
         {

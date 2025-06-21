@@ -8,12 +8,9 @@ export default function spinClose(target, params = {}, options = {}) {
     ease = 'power2.in'
   } = params;
 
-  return gsap.to(target, {
-    rotation,
-    scale: to,
-    alpha: 0,
-    duration,
-    ease,
-    ...options
-  });
+  const tl = gsap.timeline();
+  tl.to(target, { rotation, duration, ease, ...options }, 0);
+  tl.to(target.scale, { x: to, y: to, duration, ease, ...options }, 0);
+  tl.to(target, { alpha: 0, duration, ease, ...options }, 0);
+  return tl;
 }

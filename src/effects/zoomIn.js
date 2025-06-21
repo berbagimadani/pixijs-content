@@ -10,9 +10,17 @@ export default function zoomIn(target, params = {}, options = {}) {
     ease = 'power2.out'
   } = params;
 
-  return gsap.fromTo(
-    target,
-    { scale: from, alpha: alphaFrom },
-    { scale: to, alpha: alphaTo, duration, ease, ...options }
-  );
+  // Set scale awal benar
+  if (target.scale && typeof target.scale.set === 'function') {
+    target.scale.set(from, from);
+  } else {
+    // fallback, jarang terjadi di PixiJS modern
+    target.scale = from;
+  }
+  target.alpha = alphaFrom;
+
+  const tl = gsap.timeline();
+  tl.to(target.scale, { x: to, y: to, duration, ease, ...options }, 0);
+  tl.to(target, { alpha: alphaTo, duration, ease, ...options }, 0);
+  return tl;
 }
