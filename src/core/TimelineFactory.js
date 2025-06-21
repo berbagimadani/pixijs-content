@@ -69,23 +69,39 @@ export default class TimelineFactory {
       const layer = layers[index];
       if (!layer) return; // Guard if index mismatch
       parseProps(layer, layerData.props);
+
+      // keep track of the running time for this layer so that
+      // animations without an explicit `at` value chain sequentially
+      let currentTime = 0;
+
       (layerData.animations || []).forEach(anim => {
+        // determine where this animation should start: use the
+        // provided `at` if present, otherwise fall back to currentTime
+        const position = typeof anim.at === 'number' ? anim.at : currentTime;
+
         if (anim.type) {
           const effect = EffectRegistry.effects[anim.type];
-          if (effect) { 
+          if (effect) {
             const tween = effect(
               layer,
               anim.params || {},
               { paused: true, ...(anim.options || {}) }
             );
-            if (tween) tl.add(tween, anim.at || 0);
+            if (tween) {
+              // add the effect tween at the resolved position
+              tl.add(tween, position);
+              // advance the current time for sequencing
+              currentTime = position + tween.duration();
+            }
           }
         } else {
           tl.to(
             layer,
             { ...anim.to, duration: anim.duration, ease: anim.easing },
-            anim.at
+            position
           );
+          // update the running time based on this animation's duration
+          currentTime = position + (anim.duration || 0);
         }
       });
     });
