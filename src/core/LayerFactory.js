@@ -7,16 +7,7 @@ export default class LayerFactory {
     switch (data.type) {
       case 'text':
         layer = new PIXI.Text({ text: data.text || '', style: data.style || {} });
-        break;
-      // case 'sprite':
-      //   await PIXI.Assets.load(data.texture);
-      //   layer = PIXI.Sprite.from(data.texture);
-      //   break;
-      // case 'image':
-      //   await PIXI.Assets.load(data.src);
-      //   layer = PIXI.Sprite.from(data.src);
-      //   break;
-
+        break; 
       case 'sprite':
         if (!data.texture) throw new Error('Sprite layer missing "texture" property!');
         await PIXI.Assets.load(data.texture);

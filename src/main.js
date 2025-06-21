@@ -5,7 +5,7 @@ import registerEffects from './effects/register.js';
 
 registerEffects();
 
-const appManager = await AppManager.create();
+const appManager = await AppManager.create({ width: 400, height: 700 });
 
 document.body.appendChild(appManager.view);
 
