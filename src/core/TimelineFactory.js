@@ -2,6 +2,10 @@ import { gsap } from 'gsap';
 import { parseProps } from '../utils/index.js';
 import EffectRegistry from './EffectRegistry.js';
 
+// Pastikan ini dijalankan setelah ketiga script di atas dimuat!
+
+gsap.registerPlugin(PixiPlugin);
+
 export default class TimelineFactory {
   constructor(sceneManager) {
     this.sceneManager = sceneManager;
@@ -117,7 +121,7 @@ export default class TimelineFactory {
       maxAnimTime += sceneData.transitionOut.duration;
     }
 
-    console.log(`Scene will end at ${maxAnimTime} seconds`);
+    //console.log(`Scene will end at ${maxAnimTime} seconds`);
 
     // TIDAK PERLU holdDuration dummy!
     return tl;
