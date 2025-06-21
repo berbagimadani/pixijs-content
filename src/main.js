@@ -3,9 +3,9 @@ import timeline from './templates/timelineTemplate.json';
 import sample from './templates/sampleTemplate.json';
 import registerEffects from './effects/register.js';
 
-registerEffects();
- 
-const appManager = await AppManager.create({ responsive: true }); 
+registerEffects(); 
+
+const appManager = await AppManager.create({ responsive: false, width: 400, height: 700  }); 
 
 document.body.appendChild(appManager.view);
 
