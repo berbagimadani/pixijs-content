@@ -7,7 +7,8 @@ registerEffects();
 
 const appManager = await AppManager.create({ width: 1200, height: 700  }); 
 
-document.body.appendChild(appManager.view);
+document.getElementById("pixi-container").appendChild(appManager.view);
+// document.body.appendChild(appManager.view);
 
 const tl = await appManager.loadTimeline(timeline);
 //const tl = await appManager.loadTemplate(sample);

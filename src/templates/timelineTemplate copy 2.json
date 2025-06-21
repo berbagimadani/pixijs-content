@@ -1,0 +1,88 @@
+{
+  "scenes": [
+    {
+      "duration": 4,
+      "transitionIn": { "duration": 0.7 },
+      "transitionOut": { "duration": 0.5 },
+      "layers": [
+        {
+          "type": "image",
+          "src": "https://img.icons8.com/fluency/96/000000/night.png",
+          "props": { "x": "50%", "y": "50%", "anchor": { "x": "50%", "y": "50%" }, "scale": "50%" },
+          "animations": [
+            { "type": "blur", "params": { "from": 8, "to": 0, "duration": 2 }, "at": 0 }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Zaman dulu, dunia gelap tanpa penerangan.",
+          "props": { "x": "50%", "y": "80%", "anchor": { "x": "50%", "y": "50%" }, "alpha": 0.3 },
+          "animations": [
+            { "type": "flicker", "params": { "duration": 2, "repeat": 10, "frequency": 0.11, "alphaFrom": 0.3, "alphaTo": 0.7 }, "at": 0 }
+          ]
+        }
+      ]
+    },
+
+    {
+      "duration": 4,
+      "transitionIn": { "duration": 0.5 },
+      "transitionOut": { "duration": 0.5 },
+      "layers": [
+        {
+          "type": "text",
+          "text": "Manusia berjuang mencari cahaya.",
+          "props": { "x": "50%", "y": "20%", "anchor": { "x": "50%", "y": "50%" }, "alpha": 1 },
+          "animations": [
+            { "type": "glitch", "params": { "amount": 22, "duration": 1.5, "times": 13, "alphaMin": 0.6, "alphaMax": 1 }, "at": 0 },
+            { "type": "shake", "params": { "duration": 0.1, "repeat": 9 }, "at": 1.3 }
+          ]
+        }
+      ]
+    },
+
+    {
+      "duration": 4,
+      "transitionIn": { "duration": 0.5 },
+      "transitionOut": { "duration": 0.5 },
+      "layers": [
+        {
+          "type": "image",
+          "src": "https://img.icons8.com/color/96/000000/light-on.png",
+          "props": { "x": "50%", "y": "50%", "anchor": { "x": "50%", "y": "50%" }, "scale": "45%" },
+          "animations": [
+            { "type": "zoomIn", "params": { "from": 0.1, "to": 1, "duration": 1.2, "alphaFrom": 0, "alphaTo": 1 }, "at": 0 },
+            { "type": "pulse", "params": { "from": 1, "to": 1.15, "duration": 1.2, "repeat": 2 }, "at": 1.2 },
+            { "type": "bounce", "params": { "from": 1, "to": 1.2, "duration": 0.7, "repeat": 1 }, "at": 3 }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Akhirnya, lampu ditemukan!",
+          "props": { "x": "50%", "y": "80%", "anchor": { "x": "50%", "y": "50%" }, "alpha": 0 },
+          "animations": [
+            { "type": "zoomIn", "params": { "from": 0.5, "to": 1, "duration": 1, "alphaFrom": 0, "alphaTo": 1 }, "at": 2.3 }
+          ]
+        }
+      ]
+    },
+
+    {
+      "duration": 5,
+      "transitionIn": { "duration": 0.5 },
+      "transitionOut": { "duration": 0.5 },
+      "layers": [
+        {
+          "type": "text",
+          "text": "Dunia berubah jadi terang dan penuh harapan.",
+          "props": { "x": "50%", "y": "35%", "anchor": { "x": "50%", "y": "50%" }, "alpha": 1 },
+          "animations": [
+            { "type": "typewriter", "params": { "duration": 3 }, "at": 0.5 },
+            { "type": "pulse", "params": { "from": 1, "to": 1.13, "duration": 1.2, "repeat": 2 }, "at": 2.5 },
+            { "type": "swing", "params": { "amplitude": 16, "duration": 2, "repeat": 1 }, "at": 3.7 }
+          ]
+        }
+      ]
+    }
+  ]
+}

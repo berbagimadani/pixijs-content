@@ -84,36 +84,54 @@ export default class TimelineFactory {
         // Penentuan waktu mulai animasi: gunakan anim.at jika ada, jika tidak default 0 (paralel)
         const at = typeof anim.at === 'number' ? anim.at : 0;
 
-        // Ambil durasi dari parameter (params), atau duration langsung (untuk tween manual)
-        let effectDuration = anim.duration || 0;
-        if (anim.params && anim.params.duration) effectDuration = anim.params.duration;
-        if (anim.options && anim.options.delay) effectDuration += anim.options.delay;
-
-        const animEnd = at + effectDuration;
-        if (animEnd > maxAnimTime) maxAnimTime = animEnd;
-
-        if (anim.type) {
-          const effect = EffectRegistry.effects[anim.type];
-          if (effect) {
-            const tween = effect(
-              layer,
-              anim.params || {},
-              { ...(anim.options || {}) }
-            );
-            if (tween) tl.add(tween, at);
-          }
+        if (anim.group && Array.isArray(anim.group)) {
+          anim.group.forEach(subAnim => {
+            // Panggil handler effect, seperti anim biasa
+            const subAt = typeof subAnim.at === 'number' ? at + subAnim.at : at;
+            // ... lanjutkan seperti handler biasa
+            // Misal:
+            if (subAnim.type && EffectRegistry.effects[subAnim.type]) {
+              const tween = EffectRegistry.effects[subAnim.type](layer, subAnim.params || {}, subAnim.options || {});
+              if (tween) tl.add(tween, subAt);
+            } else if (subAnim.to) {
+              tl.to(layer, { ...subAnim.to, duration: subAnim.duration, ease: subAnim.easing }, subAt);
+            }
+          });
         } else {
-          const toProps = computeResponsiveProps(
-            anim.to || {},
-            this.sceneManager.app.baseWidth || this.sceneManager.app.renderer.width,
-            this.sceneManager.app.baseHeight || this.sceneManager.app.renderer.height
-          );
-          tl.to(
-            layer,
-            { ...toProps, duration: effectDuration, ease: anim.easing },
-            at
-          );
+
+          // Ambil durasi dari parameter (params), atau duration langsung (untuk tween manual)
+          let effectDuration = anim.duration || 0;
+          if (anim.params && anim.params.duration) effectDuration = anim.params.duration;
+          if (anim.options && anim.options.delay) effectDuration += anim.options.delay;
+
+          const animEnd = at + effectDuration;
+          if (animEnd > maxAnimTime) maxAnimTime = animEnd;
+
+          if (anim.type) {
+            const effect = EffectRegistry.effects[anim.type];
+            if (effect) {
+              const tween = effect(
+                layer,
+                anim.params || {},
+                { ...(anim.options || {}) }
+              );
+              if (tween) tl.add(tween, at);
+            }
+          } else {
+            const toProps = computeResponsiveProps(
+              anim.to || {},
+              this.sceneManager.app.baseWidth || this.sceneManager.app.renderer.width,
+              this.sceneManager.app.baseHeight || this.sceneManager.app.renderer.height
+            );
+            tl.to(
+              layer,
+              { ...toProps, duration: effectDuration, ease: anim.easing },
+              at
+            );
+          }
+
         }
+
       });
     });
 
