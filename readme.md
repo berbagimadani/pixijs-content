@@ -34,6 +34,17 @@ npm run build
 npm run preview
 ```
 
+### Responsive Stage
+
+`AppManager.create` accepts a `responsive` option that scales the Pixi stage
+to match the browser window while preserving the aspect ratio. Coordinates in
+the JSON templates use the base width and height provided when creating the
+app (by default `1920x1080`) and are automatically scaled on resize.
+
+```javascript
+const appManager = await AppManager.create({ responsive: true });
+```
+
 ## Loading Timelines
 
 `AppManager` can build a GSAP timeline from a JSON file. The example template at `src/templates/timelineTemplate.json` describes two scenes. Load it using `loadTimeline` and play the resulting timeline:
