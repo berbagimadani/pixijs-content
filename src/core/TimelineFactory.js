@@ -1,5 +1,5 @@
 import { gsap } from 'gsap';
-import { parseProps } from '../utils/index.js';
+import { parsePropsResponsive, computeResponsiveProps } from '../utils/index.js';
 import EffectRegistry from './EffectRegistry.js';
 
 // Pastikan ini dijalankan setelah ketiga script di atas dimuat!
@@ -73,7 +73,12 @@ export default class TimelineFactory {
     (sceneData.layers || []).forEach((layerData, index) => {
       const layer = layers[index];
       if (!layer) return;
-      parseProps(layer, layerData.props);
+      parsePropsResponsive(
+        layer,
+        layerData.props,
+        this.sceneManager.app.baseWidth || this.sceneManager.app.renderer.width,
+        this.sceneManager.app.baseHeight || this.sceneManager.app.renderer.height
+      );
 
       (layerData.animations || []).forEach(anim => {
         // Penentuan waktu mulai animasi: gunakan anim.at jika ada, jika tidak default 0 (paralel)
@@ -98,9 +103,14 @@ export default class TimelineFactory {
             if (tween) tl.add(tween, at);
           }
         } else {
+          const toProps = computeResponsiveProps(
+            anim.to || {},
+            this.sceneManager.app.baseWidth || this.sceneManager.app.renderer.width,
+            this.sceneManager.app.baseHeight || this.sceneManager.app.renderer.height
+          );
           tl.to(
             layer,
-            { ...anim.to, duration: effectDuration, ease: anim.easing },
+            { ...toProps, duration: effectDuration, ease: anim.easing },
             at
           );
         }

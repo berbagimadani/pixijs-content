@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { parseProps } from '../utils/index.js';
+import { parsePropsResponsive } from '../utils/index.js';
 
 export default class LayerFactory {
   static async create(data, app) {
@@ -23,7 +23,12 @@ export default class LayerFactory {
         layer = new PIXI.Container();
     }
 
-    parseProps(layer, data.props);
+    parsePropsResponsive(
+      layer,
+      data.props,
+      app.baseWidth || app.renderer.width,
+      app.baseHeight || app.renderer.height
+    );
     return layer;
   }
 }

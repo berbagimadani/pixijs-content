@@ -28,6 +28,8 @@ export default class AppManager {
       preserveDrawingBuffer: true,
       ...rest
     });
+    app.baseWidth = width;
+    app.baseHeight = height;
 
     const sceneManager = new SceneManager(app);
     const timelineFactory = new TimelineFactory(sceneManager);
